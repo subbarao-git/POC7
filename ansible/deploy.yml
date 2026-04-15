@@ -1,0 +1,12 @@
+- hosts: webserver
+  become: yes
+  tasks:
+
+    - name: Pull latest Docker image
+      docker_container:
+        name: java_app
+        image: "{{ image }}"
+        state: started
+        recreate: yes
+        ports:
+          - "8080:8080"
