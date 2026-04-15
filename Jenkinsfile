@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "subbu2712/java-app-ansible"
+        IMAGE_NAME = "subbu2712/java-app-ansible1"
         IMAGE_TAG  = "latest"
     }
 
