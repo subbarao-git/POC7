@@ -17,19 +17,19 @@
         enabled: true
 
     - name: Pull Docker Image
-      command: docker pull subbu2712/java-app:latest
+      command: docker pull subbu2712/java-app-ansible:latest
 
     - name: Stop existing container
-      command: docker stop java-app
+      command: docker stop java-app-ansible
       ignore_errors: yes
 
     - name: Remove existing container
-      command: docker rm java-app
+      command: docker rm java-app-ansible
       ignore_errors: yes
 
     - name: Run new container
       command: >
-        docker run -d --name java-app
+        docker run -d --name java-app-ansible
         -p 8080:8080
-        subbu2712/java-app:latest
+        subbu2712/java-app-ansible:latest
 ``
