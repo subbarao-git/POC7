@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "subbu2712/java-app"
-        TAG = "${BUILD_NUMBER}"
+        IMAGE_TAG  = "latest"
     }
 
     stages {
