@@ -1,12 +1,35 @@
-- hosts: webserver
+---
+- name: Deploy Java App Container
+  hosts: web
   become: yes
-  tasks:
 
-    - name: Pull latest Docker image
-      docker_container:
-        name: java_app
-        image: "{{ image }}"
+  tasks:
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Start Docker
+      service:
+        name: docker
         state: started
-        recreate: yes
-        ports:
-          - "8080:8080"
+        enabled: true
+
+    - name: Pull Docker Image
+      command: docker pull subbu2712/java-app:latest
+
+    - name: Stop existing container
+      command: docker stop java-app
+      ignore_errors: yes
+
+    - name: Remove existing container
+      command: docker rm java-app
+      ignore_errors: yes
+
+    - name: Run new container
+      command: >
+        docker run -d --name java-app
+        -p 8080:8080
+        subbu2712/java-app:latest
+``
