@@ -32,4 +32,3 @@
         docker run -d --name java-app-ansible
         -p 8080:8080
         subbu2712/java-app-ansible:latest
-``
