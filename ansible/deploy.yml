@@ -1,6 +1,6 @@
 ---
 - name: Deploy Java App Container
-  hosts: web
+  hosts: webserver
   become: yes
 
   tasks:
@@ -17,18 +17,18 @@
         enabled: true
 
     - name: Pull Docker Image
-      command: docker pull subbu2712/java-app-ansible:latest
+      command: docker pull subbu2712/java-app-ansible1:latest
 
     - name: Stop existing container
-      command: docker stop java-app-ansible
+      command: docker stop java-app-ansible1
       ignore_errors: yes
 
     - name: Remove existing container
-      command: docker rm java-app-ansible
+      command: docker rm java-app-ansible1
       ignore_errors: yes
 
     - name: Run new container
       command: >
-        docker run -d --name java-app-ansible
+        docker run -d --name java-app-ansible1
         -p 8080:8080
-        subbu2712/java-app-ansible:latest
+        subbu2712/java-app-ansible1:latest
