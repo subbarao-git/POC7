@@ -27,7 +27,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:$TAG .'
+                sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
             }
         }
 
@@ -39,14 +39,14 @@ pipeline {
                     passwordVariable: 'PASS'
                     )]) {
                     sh 'echo $PASS | docker login -u $USER --password-stdin'
-                    sh 'docker push $IMAGE_NAME:$TAG'
+                    sh 'docker push $IMAGE_NAME:$IMAGE_TAG'
                 }
             }
         }
 
         stage('Deploy via Ansible') {
             steps {
-                sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml --extra-vars "image=$IMAGE_NAME:$TAG"'
+                sh 'ansible-playbook -i ansible/inventory.ini ansible/deploy.yml --extra-vars "image=$IMAGE_NAME:$IMAGE_TAG"'
             }
         }
     }
