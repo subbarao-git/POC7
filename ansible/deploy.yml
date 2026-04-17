@@ -1,14 +1,15 @@
----
 - name: Deploy Java App Container
   hosts: webserver
   become: yes
 
   tasks:
     - name: Install Docker
-      yum:
+      docker_image:
         name: docker
+        build:
+          source: build
+          path: ~/project/
         state: present
-      when: ansible_os_family == "RedHat"
 
     - name: Start Docker
       service:
