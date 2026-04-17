@@ -10,6 +10,11 @@
         build:
           path: ~/project/
         state: present
+    - name: Clone application repository
+      git:
+        repo: https://github.com/subbarao-git/POC7.git
+        dest: ~/project/
+        force: yes
 
     - name: Start Docker
       service:
