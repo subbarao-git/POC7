@@ -10,6 +10,7 @@
         build:
           path: ~/project/
         state: present
+        
     - name: Clone application repository
       git:
         repo: https://github.com/subbarao-git/POC7.git
