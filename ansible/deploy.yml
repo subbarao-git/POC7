@@ -10,6 +10,8 @@
         build:
           path: ~/project/
         state: present
+        vars:
+          ansible_python_interpreter: /bin/python3
         
     - name: Clone application repository
       git:
