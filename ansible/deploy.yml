@@ -1,6 +1,6 @@
 - name: Deploy Java App Container
   hosts: webserver
-  become: false
+  become: true
 
   tasks:
     - name: Install Docker
